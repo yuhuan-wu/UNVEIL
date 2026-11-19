@@ -1,0 +1,19 @@
+# The environment of the paper's runs (Python 3.12.3, CUDA 12.8). `pip install -e ".[eval]"` installs the same
+# packages without pins; SAM 3 comes from GitHub at the pinned commit (README, "Quick start").
+torch==2.8.0
+torchvision==0.23.0
+numpy==1.26.4
+pillow==11.3.0
+safetensors==0.7.0
+pyyaml==6.0.2
+huggingface_hub==1.16.1
+opencv-python-headless==4.11.0.86
+scipy==1.17.1
+matplotlib==3.10.5
+einops==0.8.2
+psutil==7.0.0
+pysodmetrics==1.6.2
+pyEdgeEval==0.2.8
+pycocotools==2.0.11
+pyarrow==24.0.0
+pytest

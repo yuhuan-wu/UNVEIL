@@ -1,0 +1,26 @@
+# Weights and data never enter git (checkpoints/README.md and datasets/README.md say where they come from)
+/checkpoints/*
+!/checkpoints/README.md
+!/checkpoints/*.sha256
+/datasets/data/
+/outputs/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+
+# Python
+__pycache__/
+.venv/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editor / OS
+*~
+.DS_Store

@@ -1,0 +1,47 @@
+# UNVEIL, the paper's recipe (Sec. 4, Sec. 5.1 and Appendix A).
+# 8 GPUs x (24 images + 2 joint-presence images) per step, 11,000 steps; about 17 h on 8 RTX 4080 SUPER (32 GB).
+# One GPU's batch peaks at about 24 GB. With fewer GPUs, set accumulate so that GPUs x accumulate = 8: each GPU then
+# runs the batches of several of the paper's ranks in turn, with their data and dropout streams.
+
+iterations: 11000
+seed: 0
+
+# AdamW (0.9, 0.999); no weight decay on biases and LayerNorm / GroupNorm weights.
+lr: 8.0e-5                 # fusion encoder, semantic path, presence decoder
+weight_decay: 0.1
+lr_lora: 2.5e-4            # LoRA factors
+weight_decay_lora: 0.1
+lr_convention: 8.0e-4      # convention vectors (no weight decay)
+clip: 0.1                  # global gradient-norm clip
+accumulate: 1              # ranks per GPU (gradient accumulation): GPUs x accumulate = 8 gives the paper's batch
+warmup: 300                # linear warm-up, then cosine to zero
+presence_weight: 1.0       # total = dense loss + presence_weight x presence loss
+
+# Shared LoRA branch: copies of ViT blocks 24..31, LoRA on attn.qkv, attn.proj, mlp.fc1, mlp.fc2.
+lora:
+  first_block: 24
+  r: 16
+  alpha: 32.0
+
+# Images per GPU per step for each stream (unveil/data/streams.py); omitted streams keep 2.
+per_gpu:
+  sod: 2            # DUTS-TR, "salient object"
+  cod: 2            # COD10K-TR + CAMO-TR, "camouflaged object"
+  edge: 2           # HED-BSDS (augmented BSDS500 train + val), "edges"
+  shadow: 2         # SBU + ISTD, "shadow"
+  transparent: 2    # Trans10K, "transparent object"
+  mirror: 2         # MSD, "mirror"
+  skeleton: 2       # SK-LARGE "skeleton" + SYM-PASCAL "symmetry axis"
+  switch: 2         # USC12K scenes with both concepts: two pairs each, with the convention vectors
+  neg_cam: 2        # verified negatives of "camouflaged object" (COD10K-TR background and non-camouflaged, USC12K neither)
+  neg_sal: 2        # verified negatives of "salient object" (USC12K neither)
+  replay: 2         # LVIS concept replay
+  replay_neg: 2     # LVIS categories verified absent (presence only)
+
+# Joint presence module (2 images per GPU per step, its own optimizer and clip).
+joint_lr: 8.0e-5
+joint_weight_decay: 0.1
+
+workers: 10
+log_every: 20
+save_every: 1000

@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unveil"
+dynamic = ["version"]
+description = "UNVEIL: promptable concept maps from SAM 3's semantic path (paper: SAM 3 Sees More Than It Detects)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    # SAM 3 is installed from GitHub at the pinned commit (README, "Quick start").
+    "torch>=2.5",
+    "torchvision",
+    "numpy>=1.26,<2",                # SAM 3 pins numpy < 2
+    "pillow>=11,<12",                # its bilinear resize is part of the preprocessing; Pillow 13 moves scores
+    "safetensors>=0.4",
+    "pyyaml",
+    "huggingface_hub",
+    "opencv-python-headless<4.12",   # last series that supports numpy 1.x
+    "scipy",
+    "matplotlib",
+    "einops",                        # used by SAM 3 at the pinned commit, not declared by it
+    "psutil",                        # likewise
+]
+
+[project.optional-dependencies]
+eval = ["pysodmetrics==1.6.2", "pyEdgeEval==0.2.8"]
+data = ["pycocotools", "pyarrow"]           # LVIS masks; GSD and PMD (parquet)
+test = ["pytest"]
+
+[tool.setuptools.dynamic]
+version = { attr = "unveil.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["unveil*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
