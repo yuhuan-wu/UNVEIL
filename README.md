@@ -33,12 +33,12 @@ pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorc
 pip install "git+https://github.com/facebookresearch/sam3.git@2345a4ad109ac29c569da749c91d84f10dc08c40"
 pip install -e ".[eval,data,test]"
 hf auth login        # SAM 3's checkpoint facebook/sam3 is gated, so accept its licence on Hugging Face first
+# Without access to Hugging Face, skip the login and get checkpoints/sam3.pt from ModelScope:
+# wget -P checkpoints https://www.modelscope.cn/models/facebook/sam3/resolve/master/sam3.pt
 wget -P checkpoints https://github.com/yuhuan-wu/UNVEIL/releases/download/v1.0/unveil_v1.safetensors
 ```
 
-The last line downloads the UNVEIL checkpoint, 138 MB ([checkpoints/README.md](checkpoints/README.md)). Without
-access to Hugging Face, skip `hf auth login` and save SAM 3's checkpoint as `checkpoints/sam3.pt`. The same page
-gives a download from ModelScope. Then
+The last line downloads the UNVEIL checkpoint, 138 MB ([checkpoints/README.md](checkpoints/README.md)). Then
 
 ```python
 import unveil

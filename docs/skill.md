@@ -43,8 +43,8 @@ SAM 3's checkpoint `facebook/sam3` on Hugging Face is gated. Ask the user to acc
 https://huggingface.co/facebook/sam3 and to run `hf auth login` in their own terminal, with the environment of
 step 4 active. Never ask for a token, never type, print or store one, and never run `hf auth token`. After the
 login, `hf auth whoami` shows the account name. Without access to Hugging Face, the user needs a local `sam3.pt`.
-`checkpoints/README.md` gives a download from ModelScope into `checkpoints/sam3.pt`, where the code finds it, and
-a file at another place is passed as `--sam3-checkpoint`.
+The `wget` command in `checkpoints/README.md` downloads it from ModelScope to `checkpoints/sam3.pt`, where the
+code finds it. A file at another place is passed as `--sam3-checkpoint`.
 
 ## 4. Install into a new virtual environment
 
