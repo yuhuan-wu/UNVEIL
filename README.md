@@ -6,7 +6,8 @@
 <p align="center"><img src="assets/teaser.webp" width="100%" alt="SAM 3 and UNVEIL answer the same phrase on seven test images"></p>
 
 Code, data lists and trained model for the paper
-**SAM 3 Sees More Than It Detects: Promptable Concept Maps Beyond Categories**.
+[**SAM 3 Sees More Than It Detects: Promptable Concept Maps Beyond Categories**](https://arxiv.org/abs/2611.25747)
+(arXiv:2611.25747).
 
 - **One phrase in, one map or "none" out.** The same weights answer prompts for salient and camouflaged objects,
   shadows, transparent objects, mirrors, edges, skeletons and object categories.
@@ -238,7 +239,7 @@ tests/          CPU tests
 @article{wu2026sam3sees,
   title   = {{SAM} 3 Sees More Than It Detects: Promptable Concept Maps Beyond Categories},
   author  = {Wu, Yu-Huan and Liu, Yun and Zhen, Liangli},
-  journal = {arXiv preprint},
+  journal = {arXiv preprint arXiv:2611.25747},
   year    = {2026}
 }
 ```
