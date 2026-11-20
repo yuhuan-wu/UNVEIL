@@ -7,7 +7,7 @@
 
 Code, data lists and trained model for the paper
 [**SAM 3 Sees More Than It Detects: Promptable Concept Maps Beyond Categories**](https://arxiv.org/abs/2611.25747)
-(arXiv:2611.25747).
+([PDF](https://arxiv.org/abs/2611.25747)).
 
 - **One phrase in, one map or "none" out.** The same weights answer prompts for salient and camouflaged objects,
   shadows, transparent objects, mirrors, edges, skeletons and object categories.
@@ -21,7 +21,7 @@ Code, data lists and trained model for the paper
 
 The figures show the answers of both models as they come, on test images: SAM 3's detections with a score of at least
 0.5, and UNVEIL's map when its presence decoder accepts the phrase. The animation shows seven selected test images,
-one per prompt, on which SAM 3 returns no detection. Image sources are in [assets/README.md](assets/README.md).
+one per prompt, on which SAM 3 returns no detection.
 
 ## Quick start
 
@@ -59,7 +59,7 @@ python scripts/predict.py assets/examples/coco_000000228144.jpg --prompts mirror
 
 ## Results on PCM-Bench
 
-The table gives task scores of six models of Tab. 3 of the paper. A task score is the mean primary metric over the
+The table gives task scores of six models. A task score is the mean primary metric over the
 task's test sets, x100. The metrics are the S-measure for salient and camouflaged objects, 100 - BER for shadows, IoU
 for transparent objects and mirrors, and ODS for edges and skeletons. The last column averages the seven task scores.
 
